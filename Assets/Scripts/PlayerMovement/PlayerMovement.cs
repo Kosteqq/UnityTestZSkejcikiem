@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using DG.Tweening;
 
 
 public class PlayerMovement : MonoBehaviour
@@ -43,6 +43,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 m_RawMouseInput = new Vector3();
     private float   m_CurrentSpeed;
     private bool    m_OnGround;
+    private bool    m_Stopped;
 
 
     private MoveState m_State;
@@ -70,7 +71,8 @@ public class PlayerMovement : MonoBehaviour
         StateUpdate();
         UpdateCurrentSpeed();
         MovePlayer();
-        Debug.Log(m_CurrentSpeed);
+        var rot = CameraRotation.GetRotation();
+        m_PlayerTransform.rotation = Quaternion.Euler(0, rot.y, 0);
     }
 
 
@@ -95,6 +97,8 @@ public class PlayerMovement : MonoBehaviour
     {
         m_RawMouseInput.x = Input.GetAxisRaw("Horizontal");
         m_RawMouseInput.y = Input.GetAxisRaw("Vertical");
+        if (m_RawMouseInput.magnitude != 0 && m_Stopped) RotateToCameraPerspective(); // IF PLAYER JUST MOVED
+        if (m_RawMouseInput.magnitude == 0) m_Stopped = true;
     }
 
     private void OnGroundUpdate()
@@ -134,7 +138,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void MovePlayer()
     {
-        var direction = m_Transform.forward * m_RawMouseInput.y + m_Transform.right * m_RawMouseInput.x;
+        var direction = m_PlayerTransform.forward * m_RawMouseInput.y + m_PlayerTransform.right * m_RawMouseInput.x;
         float multipler = !m_OnGround ? m_AirMultiplier : 1;     // IF PLAYER IS IN THE AIR
         m_PlayerRigidbody.AddForce(direction * m_CurrentSpeed * multipler, ForceMode.Force);
 
@@ -147,6 +151,12 @@ public class PlayerMovement : MonoBehaviour
             output = output.normalized * m_CurrentSpeed;
             m_PlayerRigidbody.velocity = new Vector3(output.x, m_PlayerRigidbody.velocity.y, output.z);
         }
+    }
+
+    private void RotateToCameraPerspective()
+    {
+        m_PlayerTransform.rotation = Quaternion.Euler(0, m_CameraTransform.rotation.y * 100, 0);
+        //m_PlayerTransform.DORotate(new Vector3(0, m_CameraTransform.rotation.y, 0), 0.4f, RotateMode.Fast);
     }
 
 
