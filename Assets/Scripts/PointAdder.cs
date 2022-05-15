@@ -2,15 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 [RequireComponent(typeof(BoxCollider))]
-public class TimeAdder : MonoBehaviour
+public class PointAdder : MonoBehaviour
 {
     [Header("References")]
     public ParticleSystem m_Particles;
-
-    [Header("Config")]
-    public int m_MaxNumberOfUses;
-    private int m_NumberOfUses;
 
     private bool m_IsActive;
 
@@ -27,13 +24,9 @@ public class TimeAdder : MonoBehaviour
 
         if (other.tag == "Player")
         {
-            GameController.AddTime();
-            m_NumberOfUses++;
-            if (m_NumberOfUses >= m_MaxNumberOfUses)
-            {
-                TurnOff();
-                Debug.Log("Time adder expired");
-            }
+            GameController.AddPoint();
+            Debug.Log("Added point!");
+            TurnOff();
         }
     }
 
@@ -51,7 +44,6 @@ public class TimeAdder : MonoBehaviour
     {
         m_IsActive = true;
         m_Particles.Play();
-        m_NumberOfUses = 0;
         GetComponent<BoxCollider>().enabled = true;
     }
 
