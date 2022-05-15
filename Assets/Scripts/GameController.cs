@@ -86,5 +86,6 @@ public class GameController : MonoBehaviour
 
         m_IsRunning = false;
         Debug.Log("Game ends!");
+        Debug.Log("Player collects " + m_Points + " points!");
     }
 }
