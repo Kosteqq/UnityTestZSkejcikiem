@@ -14,11 +14,19 @@ public class GameController : MonoBehaviour
     private int   m_Points;
 
     private static GameController s_Instance;
-        
+
+    public delegate void CallOnStart();
+    private List<CallOnStart> m_CallOnStartFunctions = new List<CallOnStart>();
+    private List<CallOnStart> m_CallOnEndFunctions = new List<CallOnStart>();
+
+
+    private void Awake()
+    {
+        s_Instance = this;
+    }
 
     private void Start()
     {
-        s_Instance = this;
         StartGame();
     }
 
@@ -36,8 +44,14 @@ public class GameController : MonoBehaviour
     ///   STATIC FUNCTIONS
     //////////////////////////
 
+    public static void AddFuncOnStart(CallOnStart func)
+    { s_Instance.m_CallOnStartFunctions.Add(func); }
+
+    public static void AddFuncOnEnds(CallOnStart func)
+    { s_Instance.m_CallOnEndFunctions.Add(func); }
+
     public static void AddTime()
-    { s_Instance.m_TimeLeft += s_Instance.m_AddingTimeAmount; }
+    { s_Instance.m_TimeLeft += s_Instance.m_AddingTimeAmount; Debug.Log("Added " + s_Instance.m_AddingTimeAmount + " sec!"); }
 
     public static float GetTimeLeft()
     { return s_Instance.m_TimeLeft; }
@@ -58,12 +72,18 @@ public class GameController : MonoBehaviour
         m_TimeLeft = m_MaxTime;
         m_Points = 0;
 
+        foreach (var func in m_CallOnStartFunctions)
+            func();
+
         m_IsRunning = true;
         Debug.Log("Game started!");
     }
     
     private void EndGame()
     {
+        foreach (var func in m_CallOnEndFunctions)
+            func();
+
         m_IsRunning = false;
         Debug.Log("Game ends!");
     }

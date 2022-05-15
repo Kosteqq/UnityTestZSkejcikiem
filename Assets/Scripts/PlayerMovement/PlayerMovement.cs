@@ -71,19 +71,20 @@ public class PlayerMovement : MonoBehaviour
         StateUpdate();
         UpdateCurrentSpeed();
         MovePlayer();
-        var rot = CameraRotation.GetRotation();
-        m_PlayerTransform.rotation = Quaternion.Euler(0, rot.y, 0);
     }
 
 
     //////////////////////////
     ///   STATIC FUNCTIONS
-    //////////////////////////
+    /////////////////////////
+    
+    /*
     public static void SetPos(Vector3 pos)
     { s_Instance.m_Transform.position = pos; }
 
     public static Vector3 GetPos()
     { return s_Instance.m_Transform.position; }
+    */
 
     public static void Push(Vector3 dir, float power)
     { s_Instance.m_PlayerRigidbody.AddForce(dir * power, ForceMode.Impulse); }
@@ -155,8 +156,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void RotateToCameraPerspective()
     {
-        m_PlayerTransform.rotation = Quaternion.Euler(0, m_CameraTransform.rotation.y * 100, 0);
-        //m_PlayerTransform.DORotate(new Vector3(0, m_CameraTransform.rotation.y, 0), 0.4f, RotateMode.Fast);
+        var rot = CameraRotation.GetRotation();
+        m_PlayerTransform.DORotate(new Vector3(0, rot.y, 0), 0.4f, RotateMode.Fast);
     }
 
 
@@ -192,7 +193,7 @@ public class PlayerMovement : MonoBehaviour
         if (!m_CanJump || !m_OnGround) return;
 
         m_PlayerRigidbody.velocity = new Vector3(m_PlayerRigidbody.velocity.x, 0f, m_PlayerRigidbody.velocity.z);
-        m_PlayerRigidbody.AddForce(m_Transform.up * m_JumpForce, ForceMode.Impulse);
+        m_PlayerRigidbody.AddForce(m_PlayerTransform.up * m_JumpForce, ForceMode.Impulse);
         StartCoroutine(JumpCooldown());
     }
     private IEnumerator JumpCooldown()

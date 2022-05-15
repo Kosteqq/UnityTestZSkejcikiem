@@ -269,8 +269,97 @@ Transform:
   - {fileID: 1383720511}
   - {fileID: 410087041}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1030858553
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 337000656063828032, guid: 20f602fcf0f5fa44c92672723ddfddef,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1980689393656658636, guid: 20f602fcf0f5fa44c92672723ddfddef,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6181701660597723381, guid: 20f602fcf0f5fa44c92672723ddfddef,
+        type: 3}
+      propertyPath: m_Name
+      value: TimeAdder
+      objectReference: {fileID: 0}
+    - target: {fileID: 6181701660597723381, guid: 20f602fcf0f5fa44c92672723ddfddef,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6181701660597723381, guid: 20f602fcf0f5fa44c92672723ddfddef,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7034119619226891082, guid: 20f602fcf0f5fa44c92672723ddfddef,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7034119619226891082, guid: 20f602fcf0f5fa44c92672723ddfddef,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.5239162
+      objectReference: {fileID: 0}
+    - target: {fileID: 7034119619226891082, guid: 20f602fcf0f5fa44c92672723ddfddef,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.20060539
+      objectReference: {fileID: 0}
+    - target: {fileID: 7034119619226891082, guid: 20f602fcf0f5fa44c92672723ddfddef,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.9657003
+      objectReference: {fileID: 0}
+    - target: {fileID: 7034119619226891082, guid: 20f602fcf0f5fa44c92672723ddfddef,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7034119619226891082, guid: 20f602fcf0f5fa44c92672723ddfddef,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7034119619226891082, guid: 20f602fcf0f5fa44c92672723ddfddef,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7034119619226891082, guid: 20f602fcf0f5fa44c92672723ddfddef,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7034119619226891082, guid: 20f602fcf0f5fa44c92672723ddfddef,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7034119619226891082, guid: 20f602fcf0f5fa44c92672723ddfddef,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7034119619226891082, guid: 20f602fcf0f5fa44c92672723ddfddef,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 20f602fcf0f5fa44c92672723ddfddef, type: 3}
 --- !u!1 &1129561787
 GameObject:
   m_ObjectHideFlags: 0
@@ -285,7 +374,7 @@ GameObject:
   - component: {fileID: 1129561791}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -338,7 +427,7 @@ Transform:
   - {fileID: 1977685841}
   - {fileID: 1724514723}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &1129561790
 Rigidbody:
@@ -371,7 +460,7 @@ MonoBehaviour:
   m_Transform: {fileID: 1129561789}
   m_Camera: {fileID: 1977685844}
   m_CameraTransform: {fileID: 1977685841}
-  m_Sensitivity: 80
+  m_Sensitivity: 120
   m_DistanceFromPlayer: 5
   m_VerticalOffset: 0.5
   m_MinRotation: -10
@@ -405,7 +494,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4418ec61e4c883b4b8ee9541595c8ece, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_MaxTime: 4
+  m_MaxTime: 10
   m_AddingTimeAmount: 10
 --- !u!4 &1352009047
 Transform:
@@ -630,7 +719,7 @@ GameObject:
   - component: {fileID: 1724514724}
   m_Layer: 0
   m_Name: Capsule
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
